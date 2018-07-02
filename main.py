@@ -1,7 +1,10 @@
+from __future__ import unicode_literals
+import youtube_dl
 import sys
 import os.path
 import argparse
 import subprocess
+
 
 PATH = "~/CR Anime/"
 series_name = input("Input name of the anime (Romanji only): ")
@@ -25,6 +28,8 @@ else:
 	if str("Season %s" %(season_nr)) in seasons:
 		print("this season already exisits")
 		sys.exit(1)
+	else:
+		os.makedirs(os.path.join(normal_path, "Season %s" %(season_nr)))	 	
 
 input_file = input("Please select a file (please include extnsion if present): ")
 input_file=os.path.expanduser(os.path.join(PATH, input_file))			
@@ -43,5 +48,11 @@ os.chdir(os.path.expanduser(os.path.join(normal_path, "Season %s" %(season_nr)))
 for x in range(episode_nr):
 	os.makedirs("Episode %d" %(x+1))
 
+ydl_opts = {
+	'verbose': True,
+}
 
-	#if os.path.isfile(os.path.expanduser(os.path.join(PATH, input_file))) is True:
+with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+    meta = ydl.extract_info(
+        'http://www.crunchyroll.com/konosuba-gods-blessing-on-this-wonderful-world/episode-1-this-self-proclaimed-goddess-and-reincarnation-in-another-world-692393', download=False)
+print(meta)
