@@ -1,3 +1,4 @@
+import sys
 import os.path
 import argparse
 import subprocess
@@ -15,12 +16,8 @@ else:
 	
 input_file = input("Please select a file (please include extnsion if present): ")			
 
-try:
-	os.path.isfile(os.path.join(normal_path, input_file))
+if os.path.isfile(os.path.join(normal_path, input_file)) is True:
 	print("File "+input_file+" found.")
-except FileNotFoundError:
- 	print("File "+input_file+" does not exist")
-
-
-
- 
+else: 
+	print("File "+input_file+" does not exist")
+	sys.exit(1)
