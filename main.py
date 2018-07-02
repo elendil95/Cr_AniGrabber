@@ -13,12 +13,14 @@ else:
 	os.makedirs(normal_path)
 	print("Creating directory "+series_name+" in "+PATH)
 	
-#input_file = input("Please select a file (please include extnsion if present): ")			
+input_file = input("Please select a file (please include extnsion if present): ")			
 
-# try:
-# 	os,path.isfile(PATH"/"input_file)
-# except FileNotExistError as e:
-# 	raise e
+try:
+	os.path.isfile(os.path.join(normal_path, input_file))
+	print("File "+input_file+" found.")
+except FileNotFoundError:
+ 	print("File "+input_file+" does not exist")
+
 
 
  
