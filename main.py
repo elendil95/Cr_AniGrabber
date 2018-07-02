@@ -5,9 +5,10 @@ import subprocess
 
 PATH = "~/CR Anime/"
 series_name = input("Input name of the anime (Romanji only): ")
-season_nr = input("Input a season number (The season you want, not the total number of seasons):") 
-full_path=PATH+series_name
-normal_path=os.path.expanduser(full_path)
+season_nr = input("Input a season number (The season you want, not the total number of seasons):")
+episode_nr = None 
+#full_path=PATH+series_name
+normal_path=os.path.expanduser(os.path.join(PATH, series_name))
 
 if (os.path.isdir(normal_path)):
 	print("Folder "+series_name+" already exists.")
@@ -25,9 +26,18 @@ else:
 		print("this season already exisits")
 		sys.exit(1)
 
-input_file = input("Please select a file (please include extnsion if present): ")			
-if os.path.isfile(os.path.join(PATH, input_file)) is True:
+input_file = input("Please select a file (please include extnsion if present): ")
+input_file=os.path.expanduser(os.path.join(PATH, input_file))			
+if os.path.isfile(input_file) is True:
 	print("File "+input_file+" found.")
-else: 
+	episode_nr =  len(open(input_file).read().splitlines()) #for the script to work there must be no lines after the last url
+	print("Anime \'",series_name,"\' has ", episode_nr, " episodes")
+else:
+	file=str(os.path.join(PATH, input_file))
+	print(file)
 	print("File "+input_file+" does not exist")
 	sys.exit(1)
+
+
+
+	#if os.path.isfile(os.path.expanduser(os.path.join(PATH, input_file))) is True:
