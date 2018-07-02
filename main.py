@@ -22,7 +22,7 @@ if seasons == []:
 	os.makedirs(os.path.join(normal_path, "Season %s" %(season_nr)))
 else:		
 	print("Anime \'"+series_name+"\'"+" contains the following seasons already: "+str(seasons))
-	if season_nr in seasons:
+	if str("Season %s" %(season_nr)) in seasons:
 		print("this season already exisits")
 		sys.exit(1)
 
