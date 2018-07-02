@@ -38,6 +38,10 @@ else:
 	print("File "+input_file+" does not exist")
 	sys.exit(1)
 
+print("Creating last directory structure...")
+os.chdir(os.path.expanduser(os.path.join(normal_path, "Season %s" %(season_nr))))
+for x in range(episode_nr):
+	os.makedirs("Episode %d" %(x+1))
 
 
 	#if os.path.isfile(os.path.expanduser(os.path.join(PATH, input_file))) is True:
