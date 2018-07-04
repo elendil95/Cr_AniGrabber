@@ -35,7 +35,7 @@ else:
 		os.makedirs(os.path.join(series_path, "Season %s" %(season_nr)))	 	
 
 input_file = input("Please select an input file containing episode urls. (include extnsion if present): ")
-input_file=os.path.expanduser(os.path.join(BASE_PATH, input_file))			
+input_file=os.path.join(BASE_PATH, input_file)			
 if os.path.isfile(input_file) is True:
 	print("File "+input_file+" found.")
 	episode_nr =  len(open(input_file).read().splitlines()) #for the script to work there must be no lines after the last url
@@ -47,7 +47,7 @@ else:
 	sys.exit(1)
 print("done"+'\n')
 print("Creating last directory structure...")
-os.chdir(os.path.expanduser(os.path.join(series_path, "Season %s" %(season_nr))))
+os.chdir(os.path.join(series_path, "Season %s" %(season_nr)))
 for x in range(episode_nr):
 	os.makedirs("Episode %d" %(x+1))
 
