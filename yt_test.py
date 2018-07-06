@@ -6,19 +6,21 @@ import argparse
 import subprocess
 
 ydl_opts = {
-	'verbose': True,
-	'dump_single_json': True
+	#'verbose': True,
+	'dump_single_json': True,
 	#'batchfile': 
-	'format': "720p-1"
+	#'format': "720p-1",
 	#'autonumber_size': 1
-	'outtmpl':
-	'writethumbnail': True
-	'subtitlesformat': "srt"
-	'subtitleslangs': "enUS"
-	'writesubtitles': True
-	'prefer_ffmpeg': True
+	#'outtmpl':
+	'writethumbnail': True,
+	'subtitlesformat': "srt",
+	'subtitleslangs': "enUS",
+	'writesubtitles': True,
+	'prefer_ffmpeg': True,
+	'embedsubtitles': True,
+	'embedthumbnail': True
 	#'postprocessor_args'
 }
 
 with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-    ydl.download(['http://www.crunchyroll.com/konosuba-gods-blessing-on-this-wonderful-world/episode-1-this-self-proclaimed-goddess-and-reincarnation-in-another-world-692393'])
+    ydl.download(['http://www.crunchyroll.com/is-the-order-a-rabbit/episode-1-i-knew-at-first-glance-that-it-was-no-ordinary-fluffball-653243'])

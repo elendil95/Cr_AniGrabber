@@ -14,7 +14,7 @@ episode_nr = None
 series_path=os.path.join(BASE_PATH, series_name)
 
 if (os.path.isdir(series_path)):
-	print("Series \'"+series_name+"\'"+" already exists, moving into it...")
+	print("Series \'"+series_name+"\'"+" already exists, moving into it...\n")
 else:
 	os.makedirs(series_path)
 	print("Creating series \'"+series_name+"\'"+" in "+BASE_PATH)
