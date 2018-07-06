@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 import youtube_dl
 import sys
 import os.path
+import helper_functions as help
 import argparse
 import subprocess
 
@@ -10,7 +11,6 @@ BASE_PATH = os.path.join(os.environ.get('HOME'),"CR Anime")
 series_name = input("Input name of the anime (Romanji only): ")
 
 episode_nr = None 
-#full_path=PATH+series_name
 series_path=os.path.join(BASE_PATH, series_name)
 
 if (os.path.isdir(series_path)):
@@ -35,16 +35,17 @@ else:
 		os.makedirs(os.path.join(series_path, "Season %s" %(season_nr)))	 	
 
 input_file = input("Please select an input file containing episode urls. (include extnsion if present): ")
-input_file=os.path.join(BASE_PATH, input_file)			
-if os.path.isfile(input_file) is True:
-	print("File "+input_file+" found.")
+found_file=help.searchforInputfile(BASE_PATH, input_file)
+if os.path.isfile(found_file) is True:
+	print("File "+found_file+" found.")
+	input_file=found_file
 	episode_nr =  len(open(input_file).read().splitlines()) #for the script to work there must be no lines after the last url
 	print("Anime \'",series_name,"\' has ", episode_nr, " episodes")
+
 else:
-	file=str(os.path.join(BASE_PATH, input_file))
-	print(file)
 	print("File "+input_file+" does not exist. re-run the program and select a valid file")
 	sys.exit(1)
+
 print("done"+'\n')
 print("Creating last directory structure...")
 os.chdir(os.path.join(series_path, "Season %s" %(season_nr)))
